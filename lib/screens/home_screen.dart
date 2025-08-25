@@ -20,16 +20,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> fetchCourts() async {
-  try {
-    final snapshot = await FirebaseFirestore.instance.collection('courts').get();
-    final courtNames = snapshot.docs.map((doc) => doc['name'] as String).toList();
-    setState(() {
-      courts = courtNames;
-    });
-  } catch (e) {
-    print("Erro ao buscar quadras: $e");
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('courts')
+          .get();
+      final courtNames = snapshot.docs
+          .map((doc) => doc['name'] as String)
+          .toList();
+      setState(() {
+        courts = courtNames;
+      });
+    } catch (e) {
+      print("Erro ao buscar quadras: $e");
+    }
   }
-}
 
   void _logout() async {
     await FirebaseAuth.instance.signOut();
@@ -51,10 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true, // ✅ título centralizado
         title: const Text(
           "Sport Replay",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions: [
           IconButton(icon: const Icon(Icons.person), onPressed: _goToProfile),
@@ -75,7 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 10),
-
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/record_screen');
+              },
+              child: const Text("Ir para Record Screen"),
+            ),
             // Lista de quadras
             Expanded(
               child: courts.isEmpty
