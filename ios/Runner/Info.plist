@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Este app precisa acessar a câmera.</string>
 	<key>CFBundleDisplayName</key>
 	<string>Sport Replay</string>
 	<key>CFBundleExecutable</key>
