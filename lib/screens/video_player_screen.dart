@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import '../utils/firebase_video_service.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
-  const VideoPlayerScreen({super.key});
+  const VideoPlayerScreen({super.key, required String videoPath});
 
   @override
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
@@ -188,17 +188,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         label: const Text("Download"),
                       ),
                       ElevatedButton.icon(
-                        onPressed: () {
-                          // TODO: Implementar compartilhar
-                        },
-                        icon: const Icon(Icons.share),
-                        label: const Text("Compartilhar"),
-                      ),
-                      ElevatedButton.icon(
                         onPressed: pickAndSaveVideo,
                         icon: const Icon(Icons.bookmark),
                         label: const Text("Salvar"),
                       ),
+                      IconButton(
+                        onPressed: () {
+                          // lógica de compartilhar
+                        },
+                        icon: const Icon(Icons.share),
+                      )
                     ],
                   ),
           ],

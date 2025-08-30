@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sport_replay/screens/video_player_screen.dart';
 import '../widgets/custom_appbar.dart';
 import '../utils/firebase_video_service.dart';
 
@@ -30,10 +31,61 @@ class VideoListScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
+          // Caso não existam vídeos no Firestore → mostra vídeo de exemplo
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text("Nenhum vídeo encontrado."));
+            //return const Center(child: Text("Nenhum vídeo encontrado."));
+            // Vídeo de exemplo (esporte)
+            final exampleVideo = {
+              'title': '3 SEGREDOS PARA NÃO ERRA MAIS O ATAQUE',
+              'thumbnail': 'https://img.youtube.com/vi/q69bPeHXPi8/0.jpg', // thumbnail exemplo
+              'file': 'https://archive.org/details/SampleVideo1280x7205mb', // link MP4 exemplo
+            };
+
+            return ListView(
+              children: [
+                Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          exampleVideo['title']!,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(height: 8),
+                        Image.network(exampleVideo['thumbnail']!),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => VideoPlayerScreen(
+                                      videoPath: exampleVideo['file']!,
+                                    ),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.play_arrow),
+                              label: const Text("Assistir"),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
           }
 
+          // Caso tenha vídeos do usuário no Firestore
           final videos = snapshot.data!.docs;
 
           return ListView.builder(

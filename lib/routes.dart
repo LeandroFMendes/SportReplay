@@ -9,6 +9,7 @@ import 'screens/videos_screen.dart';
 import 'screens/video_player_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/record_screen.dart';
+import 'screens/video_list_screen.dart';
 
 class AppRoutes {
   static const String login = '/login';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String videoPlayer = '/video_player';
   static const String profile = '/profile';
   static const String record = '/record_screen';
+  static String get list => '/video_list_screen';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -27,9 +29,10 @@ class AppRoutes {
       home: (context) => HomeScreen(),
       schedule: (context) => ScheduleScreen(),
       videos: (context) => VideosScreen(),
-      videoPlayer: (context) => VideoPlayerScreen(),
+      videoPlayer: (context) => VideoPlayerScreen(videoPath: '',),
       profile: (context) => ProfileScreen(),
       record: (context) => RecordScreen(),
+      list: (context) => VideoListScreen(),
     };
   }
 }

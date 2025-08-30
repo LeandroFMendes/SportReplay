@@ -75,6 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
               "Selecione a quadra para ver horários:",
               style: TextStyle(fontSize: 16),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/video_list_screen');
+              },
+              child: const Text("Lista de videos"),
+            ), // BOTÃO TEMPORÁRIO PARA IR PARA OS VIDEOS
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {

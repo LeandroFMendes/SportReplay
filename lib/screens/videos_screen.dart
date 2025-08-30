@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_appbar.dart';
 
 class VideosScreen extends StatelessWidget {
+  const VideosScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
@@ -80,26 +82,37 @@ class VideosScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    // lógica de download
-                                  },
-                                  icon: Icon(Icons.download),
-                                  label: Text("Download"),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      // lógica de download
+                                    },
+                                    icon: const Icon(Icons.download, size: 18),
+                                    label: const Text("Download", overflow: TextOverflow.ellipsis),
+                                  ),
                                 ),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    // lógica de compartilhar
-                                  },
-                                  icon: Icon(Icons.share),
-                                  label: Text("Compartilhar"),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      // lógica de compartilhar
+                                    },
+                                    icon: const Icon(Icons.share, size: 18),
+                                    label: const Text("Compartilhar", overflow: TextOverflow.ellipsis),
+                                  ),
                                 ),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    // lógica de salvar no perfil
-                                  },
-                                  icon: Icon(Icons.bookmark),
-                                  label: Text("Salvar"),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      // lógica de salvar no perfil
+                                    },
+                                    icon: const Icon(Icons.bookmark, size: 18),
+                                    label: const Text("Salvar", overflow: TextOverflow.ellipsis),
+                                  ),
                                 ),
                               ],
                             ),
