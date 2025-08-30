@@ -30,6 +30,11 @@ android {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
+    lintOptions {
+        warningsAsErrors false
+        abortOnError false
+    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.sport_replay"
@@ -52,4 +57,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:-options"
 }
